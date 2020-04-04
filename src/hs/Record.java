@@ -53,12 +53,12 @@ public class Record implements Comparable<Record> {
 	}
 
 	/**
-	 * Compares for descending order.
+	 * Compares records for descending order.
 	 * @param record Compared record with this one
 	 */
 	@Override
 	public int compareTo(Record record) {	
-		// If we reverse this, the order will be descending
+		// If we reverse this, the order will be ascending
 		return record.score - this.score;
 	}
 	
