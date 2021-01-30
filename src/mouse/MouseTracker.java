@@ -22,22 +22,16 @@
  */
 package mouse;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
+/**
+ * Runs mouse tracker demo.
+ * @author Ron.Coleman
+ */
 @SuppressWarnings("serial")
 public class MouseTracker extends JFrame {	
 	public MouseTracker() {
         add(new Board(this));
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);

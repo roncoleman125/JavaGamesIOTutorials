@@ -23,6 +23,7 @@
 package mouse;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
@@ -32,9 +33,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -60,6 +61,10 @@ public class Board extends JPanel implements ActionListener, MouseListener {
         timer.start();
 	}
 
+	/**
+	 * Renders game state.
+	 * @param g Graphics context
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
         
@@ -73,9 +78,12 @@ public class Board extends JPanel implements ActionListener, MouseListener {
         g2d.dispose();
 	}
 
+	/**
+	 * Runs timer callback.
+	 * @param event Type of event
+	 */
 	@Override
-	public void actionPerformed(ActionEvent event) {
-		
+	public void actionPerformed(ActionEvent event) {		
 		// MouseInfo gives the desktop coordinates.
         double mouseX = MouseInfo.getPointerInfo().getLocation().getX();
         double mouseY = MouseInfo.getPointerInfo().getLocation().getY();
@@ -88,7 +96,7 @@ public class Board extends JPanel implements ActionListener, MouseListener {
 		double frameW = this.getWidth();
 		double frameH = this.getHeight();
 
-        // Don't output anything if outside the frame.
+        // Don't change x,y if outside the frame.
         if(mouseX < frameX || mouseX > frameX+frameW || mouseY < frameY || mouseY > frameY+frameH)
         	return;
         
@@ -98,23 +106,50 @@ public class Board extends JPanel implements ActionListener, MouseListener {
 		repaint();
 	}
 	
+	/**
+	 * Handles mouse clicks.
+	 * @param event Mouse event
+	 */
 	@Override
 	public void mouseClicked(MouseEvent event) {
-		
+		System.out.println("clicked: ("+event.getX()+", "+event.getY()+")");
 	}
 
+	/**
+	 * Handles mouse panel entry.
+	 * @param event Mouse event
+	 */
 	@Override
 	public void mouseEntered(MouseEvent event) {
+		System.out.println("entered: ("+event.getX()+", "+event.getY()+")");
 	}
 
+	/**
+	 * Handles mouse panel exit.
+	 * @param event Mouse event
+	 */
 	@Override
 	public void mouseExited(MouseEvent event) {		
+		System.out.println("exited: ("+event.getX()+", "+event.getY()+")");
 	}
 
+	/**
+	 * Handles mouse button pressed.
+	 * @param event Mouse event
+	 */
 	@Override
 	public void mousePressed(MouseEvent event) {	
+		if(SwingUtilities.isLeftMouseButton(event))
+			System.out.println("left mouse button clicked!");
+		
+		else if(SwingUtilities.isRightMouseButton(event))
+			System.out.println("right mouse button clicked!");
 	}
 
+	/**
+	 * Handles mouse button release.
+	 * @param event Mouse event
+	 */
 	@Override
 	public void mouseReleased(MouseEvent event) {		
 	}
