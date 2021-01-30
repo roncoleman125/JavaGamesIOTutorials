@@ -20,54 +20,33 @@
  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package hs;
+package mouse;
 
-public class Record implements Comparable<Record> {
-	protected String name;
-	protected int score;
-	
-	/**
-	 * Constructor
-	 * @param name Player name
-	 * @param score Player score
-	 */
-	public Record(String name, int score) {
-		this.name = name;
-		this.score = score;
-	}
-	
-	/**
-	 * Gets player name.
-	 * @return Name
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * Gets player score.
-	 * @return Score
-	 */
-	public int getScore() {
-		return score;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
+@SuppressWarnings("serial")
+public class MouseTracker extends JFrame {	
+	public MouseTracker() {
+        add(new Board(this));
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setTitle("Mouse tracker");
+        setResizable(false);
+        setVisible(true);
 	}
 
-	/**
-	 * Compares records for descending order.
-	 * @param record Compared record with this one
-	 */
-	@Override
-	public int compareTo(Record record) {	
-		// If we reverse this, the order will be ascending
-		return record.score - this.score;
-	}
-	
-	/**
-	 * Converts to a string for SOP.
-	 * @return String
-	 */
-	@Override
-	public String toString() {
-		return name + " " + score;
+	public static void main(String[] args) {
+		new MouseTracker();
 	}
 }
